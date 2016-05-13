@@ -45,25 +45,25 @@ class Display
         end
       end
       if current_piece.is_a?(King)
-        if current_piece.can_castle?([7,6]) && @cursor_pos == [7,4]
+        if current_piece.can_castle?([7,6]) && (@cursor_pos == [7,4] || @selected_pos == [7,4])
           if [i,j] == [7,6]
             bg = :blue
             mode = :default
           end
         end
-        if current_piece.can_castle?([7,2]) && @cursor_pos == [7,4]
+        if current_piece.can_castle?([7,2]) && (@cursor_pos == [7,4] || @selected_pos == [7,4])
           if [i,j] == [7,2]
             bg = :blue
             mode = :default
           end
         end
-        if current_piece.can_castle?([0,6]) && @cursor_pos == [0,4]
+        if current_piece.can_castle?([0,6]) && (@cursor_pos == [0,4] || @selected_pos == [0,4])
           if [i,j] == [0,6]
             bg = :blue
             mode = :default
           end
         end
-        if current_piece.can_castle?([0,2]) && @cursor_pos == [0,4]
+        if current_piece.can_castle?([0,2]) && (@cursor_pos == [0,4] || @selected_pos == [0,4])
           if [i,j] == [0,2]
             bg = :blue
             mode = :default

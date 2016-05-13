@@ -45,6 +45,7 @@ module Cursorable
       if @selected_pos && @board[@selected_pos].color != @game.current_color
         @selected_pos = nil
       end
+      self.render
       @cursor_pos
     when :left, :right, :up, :down
       update_pos(MOVES[key])
