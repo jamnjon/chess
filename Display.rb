@@ -87,8 +87,11 @@ class Display
     system("clear")
     puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
     build_grid.each { |row| puts row.join }
-    puts @game.current_player.name + ", select a " + @game.current_color.to_s + " piece to move"
-    puts "and then select where to place it"
+    if @selected_pos
+      puts @game.current_player.name + ", where do you want to move it?"
+    else
+      puts @game.current_player.name + ", select a " + @game.current_color.to_s + " piece to move"
+    end
     if @board.in_check?(@game.current_player.color)
       puts "CHECK!"
     end
