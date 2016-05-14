@@ -28,10 +28,8 @@ class Display
   def colors_for(i, j)
     if (i + j).odd?
       bg = :black
-      mode = :default
     else
       bg = :light_black
-      mode = :default
     end
     current_piece = @board[@cursor_pos]
     if @selected_pos
@@ -41,46 +39,39 @@ class Display
       current_piece.moves.each do |pos|
         if [i,j] == pos
           bg = :blue
-          mode = :default
         end
       end
       if current_piece.is_a?(King)
         if current_piece.can_castle?([7,6]) && (@cursor_pos == [7,4] || @selected_pos == [7,4])
           if [i,j] == [7,6]
             bg = :blue
-            mode = :default
           end
         end
         if current_piece.can_castle?([7,2]) && (@cursor_pos == [7,4] || @selected_pos == [7,4])
           if [i,j] == [7,2]
             bg = :blue
-            mode = :default
           end
         end
         if current_piece.can_castle?([0,6]) && (@cursor_pos == [0,4] || @selected_pos == [0,4])
           if [i,j] == [0,6]
             bg = :blue
-            mode = :default
           end
         end
         if current_piece.can_castle?([0,2]) && (@cursor_pos == [0,4] || @selected_pos == [0,4])
           if [i,j] == [0,2]
             bg = :blue
-            mode = :default
           end
         end
       end
     end
     if [i,j] == @selected_pos
-      bg = :green
-      mode = :default
+      bg = :magenta
     end
 
     if [i, j] == @cursor_pos
       bg = :red
-      mode = :blink
     end
-    { background: bg, color: :white, mode: mode }
+    { background: bg, color: :white}
   end
 
   def render
