@@ -20,9 +20,7 @@ class Game
         raise RuntimeError if @board.color(start_pos) != @current_color
         end_pos = get_user_input
         resp = @board.move(start_pos, end_pos)
-        # byebug
         if resp
-          # byebug
           piece_type = get_piece_type
           @board.piece_spawn(piece_type, end_pos, @current_color)
         end

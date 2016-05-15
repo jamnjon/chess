@@ -33,7 +33,6 @@ class Piece
 
   def move_into_check?(move)
     test_board = @board.dup
-    # debugger
     test_board.move!(@pos, move)
     test_board.in_check?(@color)
   end

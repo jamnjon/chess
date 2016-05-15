@@ -22,12 +22,10 @@ class King < Piece
 
   def can_castle?(end_pos)
     return false if @board.in_check?(@color) || @has_moved
-    # byebug
     row = @pos[0]
     return false unless [2,-2].include?(end_pos[1] - @pos[1])
     if end_pos[1] < @pos[1]
       piece = @board[[row, 0]]
-      # byebug
       return false unless piece.is_a?(Rook) && !piece.has_moved
       return false unless @board[[row,3]].empty? && !move_into_check?([row,3])
       return false unless @board[[row,2]].empty? && !move_into_check?([row,2])
@@ -35,12 +33,10 @@ class King < Piece
 
     else
       piece = @board[[@pos[0], 7]]
-      # byebug
       return false unless piece.is_a?(Rook) && !piece.has_moved
       return false unless @board[[row,5]].empty? && !move_into_check?([row,5])
       return false unless @board[[row,6]].empty? && !move_into_check?([row,6])
     end
-    # byebug
     true
   end
 

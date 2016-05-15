@@ -86,8 +86,6 @@ class Display
     if @board.in_check?(@game.current_player.color)
       puts "CHECK!"
     end
-    # puts @board[@cursor_pos].moves
-    # puts @board[@cursor_pos].is_a?(King) && @board[@cursor_pos].can_castle?([7,6])
-    # puts @selected_pos
+
   end
 end

@@ -1,4 +1,3 @@
-# require 'bishop'
 require 'byebug'
 
 module Slidable
