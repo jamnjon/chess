@@ -23,13 +23,21 @@ class Board
   def move(start_pos, end_pos)
 
     if self[start_pos].valid_move?(end_pos)
-
+      if self[end_pos] == Empty_Square.instance && self[start_pos].is_a?(Pawn) &&
+        end_pos[1] != start_pos[1]
+        self[[start_pos[0],end_pos[1]]] = Empty_Square.instance
+      end
       self[end_pos] = self[start_pos]
       self[end_pos].pos = end_pos
       self[start_pos] = Empty_Square.instance
 
       if self[end_pos].is_a?(King) || self[end_pos].is_a?(Rook)
         self[end_pos].has_moved = true
+      end
+
+      if self[end_pos].is_a?(Pawn) && (start_pos[0] - end_pos[0] == 2 ||
+        start_pos[0] - end_pos[0] == -2)
+        self[end_pos].just_double_stepped = true
       end
 
       if self[end_pos].is_a?(King)

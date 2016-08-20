@@ -7,7 +7,9 @@ require 'byebug'
 
 class Pawn < Piece
 
+  attr_accessor :just_double_stepped
   def initialize(color, board, pos)
+    @just_double_stepped = false
     super
   end
 
@@ -39,6 +41,10 @@ class Pawn < Piece
         moves << [x,y]
       else
         moves << [x,y] if !@board[[x,y]].empty? && @board[[x,y]].capturable?(@color)
+        new_p = @board[[x-dx, y]]
+        if @board[[x,y]].empty? && new_p.is_a?(Pawn) && new_p.just_double_stepped
+          moves << [x,y]
+        end
       end
     end
     moves

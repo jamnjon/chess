@@ -47,6 +47,14 @@ class Game
   def player_swap!
     @current_player == @player1 ? @current_player = @player2 : @current_player = @player1
     @current_color = @current_player.color
+    (0..7).each do |x_coord|
+      if @current_color == :white
+        current_square = @board[[4,x_coord]]
+      else
+        current_square = @board[[3,x_coord]]
+      end
+      current_square.just_double_stepped = false if current_square.is_a?(Pawn)
+    end
   end
 
   def get_user_input
